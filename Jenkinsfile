@@ -3,7 +3,7 @@ pipeline {
 
     tools {
         maven 'Maven 3.9.10'
-        jdk 'JDK21'
+        jdk    'JDK21'
     }
 
     stages {
@@ -15,31 +15,25 @@ pipeline {
 
         stage('Compilar') {
             steps {
-                sh 'mvn clean compile'
+                bat 'mvn clean compile'
             }
         }
 
         stage('Probar') {
             steps {
-                sh 'mvn test'
+                bat 'mvn test'
             }
         }
 
         stage('Empaquetar') {
             steps {
-                sh 'mvn package'
+                bat 'mvn package'
             }
         }
     }
 
     post {
-        success {
-            echo 'El build fue exitoso'
-        }
-        failure {
-            echo 'El build falló'
-        }
+        success { echo 'El build fue exitoso' }
+        failure { echo 'El build falló' }
     }
 }
-
-
